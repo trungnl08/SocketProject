@@ -4,6 +4,10 @@
  * and open the template in the editor.
  */
 package chat;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 
 /**
  *
@@ -14,6 +18,14 @@ public class chatServer extends javax.swing.JFrame {
     /**
      * Creates new form chatServer
      */
+    
+    
+    static ServerSocket ss;
+    static Socket s;
+    static DataInputStream din;
+    static DataOutputStream dout;
+    
+    
     public chatServer() {
         initComponents();
     }
@@ -105,6 +117,17 @@ public class chatServer extends javax.swing.JFrame {
                 new chatServer().setVisible(true);
             }
         });
+        
+        String msgIn = "";
+        try {
+            ss = new ServerSocket(1201);
+            s=ss.accept();
+            din= new DataInputStream(s.getInputStream());
+            dout = new DataOutputStream(s.getOutputStream());
+        } catch (Exception e){
+            
+        }
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
