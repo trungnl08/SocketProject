@@ -5,6 +5,11 @@
  */
 package chat;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
+
 /**
  *
  * @author h-sierra
@@ -14,6 +19,10 @@ public class chatClient extends javax.swing.JFrame {
     /**
      * Creates new form chatClient
      */
+    static ServerSocket ss;
+    static Socket s;
+    static DataInputStream din;
+    static DataOutputStream dout;
     public chatClient() {
         initComponents();
     }
@@ -41,6 +50,11 @@ public class chatClient extends javax.swing.JFrame {
         msgText.setText("jTextField1");
 
         msgSend.setText("jButton1");
+        msgSend.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                msgSendActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -71,6 +85,16 @@ public class chatClient extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void msgSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_msgSendActionPerformed
+        // TODO add your handling code here:
+        try{String msgOut = "";
+        msgOut = msgText.getText().trim();
+        dout.writeUTF(msgOut);
+        } catch (Exception e){
+            
+        }
+    }//GEN-LAST:event_msgSendActionPerformed
 
     /**
      * @param args the command line arguments
@@ -105,6 +129,19 @@ public class chatClient extends javax.swing.JFrame {
                 new chatClient().setVisible(true);
             }
         });
+        
+        try {
+            s= new Socket("127.0.0.1", 1201);
+            din = new DataInputStream(s.getInputStream());
+            dout= new DataOutputStream(s.getOutputStream());
+            String msgIn ="";
+            while(!msgIn.equals("exit")){
+                msgIn =din.readUTF();
+                msgArea.setText(msgArea.getText().trim()+"\n"+msgIn);
+            }
+        } catch (Exception e){
+            
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

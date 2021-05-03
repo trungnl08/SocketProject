@@ -49,6 +49,11 @@ public class chatServer extends javax.swing.JFrame {
         msgText.setText("jTextField1");
 
         msgSend.setText("jButton1");
+        msgSend.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                msgSendActionPerformed(evt);
+            }
+        });
 
         msgArea.setColumns(20);
         msgArea.setRows(5);
@@ -83,6 +88,17 @@ public class chatServer extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void msgSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_msgSendActionPerformed
+        // TODO add your handling code here:
+        try{
+        String msgOut = "";
+        msgOut = msgText.getText().trim();
+        dout.writeUTF(msgOut);
+        }catch (Exception e){
+                        
+                        }
+    }//GEN-LAST:event_msgSendActionPerformed
 
     /**
      * @param args the command line arguments
@@ -124,6 +140,11 @@ public class chatServer extends javax.swing.JFrame {
             s=ss.accept();
             din= new DataInputStream(s.getInputStream());
             dout = new DataOutputStream(s.getOutputStream());
+            
+            while(!msgIn.equals("exit")){
+                msgIn = din.readUTF();
+                msgArea.setText(msgArea.getText().trim()+"\n"+msgIn);
+            }
         } catch (Exception e){
             
         }
