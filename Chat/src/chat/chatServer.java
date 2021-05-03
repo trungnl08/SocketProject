@@ -43,12 +43,11 @@ public class chatServer extends javax.swing.JFrame {
         msgSend = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         msgArea = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        msgText.setText("jTextField1");
-
-        msgSend.setText("jButton1");
+        msgSend.setText("Gửi");
         msgSend.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 msgSendActionPerformed(evt);
@@ -58,6 +57,8 @@ public class chatServer extends javax.swing.JFrame {
         msgArea.setColumns(20);
         msgArea.setRows(5);
         jScrollPane1.setViewportView(msgArea);
+
+        jLabel1.setText("Server");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -73,11 +74,17 @@ public class chatServer extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jScrollPane1)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(35, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -94,10 +101,11 @@ public class chatServer extends javax.swing.JFrame {
         try{
         String msgOut = "";
         msgOut = msgText.getText().trim();
+        msgArea.setText(msgArea.getText().trim()+"\n"+"Server : "+ msgOut );
         dout.writeUTF(msgOut);
         }catch (Exception e){
                         
-                        }
+        }
     }//GEN-LAST:event_msgSendActionPerformed
 
     /**
@@ -143,7 +151,7 @@ public class chatServer extends javax.swing.JFrame {
             
             while(!msgIn.equals("exit")){
                 msgIn = din.readUTF();
-                msgArea.setText(msgArea.getText().trim()+"\n"+msgIn);
+                msgArea.setText(msgArea.getText().trim()+"\n"+ "Client : " +msgIn);
             }
         } catch (Exception e){
             
@@ -152,6 +160,7 @@ public class chatServer extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private static javax.swing.JTextArea msgArea;
     private javax.swing.JButton msgSend;

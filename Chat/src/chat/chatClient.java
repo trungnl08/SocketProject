@@ -40,6 +40,7 @@ public class chatClient extends javax.swing.JFrame {
         msgArea = new javax.swing.JTextArea();
         msgText = new javax.swing.JTextField();
         msgSend = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -47,14 +48,20 @@ public class chatClient extends javax.swing.JFrame {
         msgArea.setRows(5);
         jScrollPane1.setViewportView(msgArea);
 
-        msgText.setText("jTextField1");
+        msgText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                msgTextActionPerformed(evt);
+            }
+        });
 
-        msgSend.setText("jButton1");
+        msgSend.setText("Gửi");
         msgSend.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 msgSendActionPerformed(evt);
             }
         });
+
+        jLabel1.setText("Client");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -65,16 +72,21 @@ public class chatClient extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(msgText, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(msgSend)
-                        .addGap(0, 6, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(msgText, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(msgSend))
+                            .addComponent(jLabel1))
+                        .addGap(0, 28, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addGap(12, 12, 12)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -95,6 +107,10 @@ public class chatClient extends javax.swing.JFrame {
             
         }
     }//GEN-LAST:event_msgSendActionPerformed
+
+    private void msgTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_msgTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_msgTextActionPerformed
 
     /**
      * @param args the command line arguments
@@ -137,7 +153,7 @@ public class chatClient extends javax.swing.JFrame {
             String msgIn ="";
             while(!msgIn.equals("exit")){
                 msgIn =din.readUTF();
-                msgArea.setText(msgArea.getText().trim()+"\n"+msgIn);
+                msgArea.setText(msgArea.getText().trim()+"\n"+ "Server : "+msgIn);
             }
         } catch (Exception e){
             
@@ -145,6 +161,7 @@ public class chatClient extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private static javax.swing.JTextArea msgArea;
     private javax.swing.JButton msgSend;
