@@ -24,10 +24,11 @@ public class chatServer extends javax.swing.JFrame {
     static Socket s;
     static DataInputStream din;
     static DataOutputStream dout;
-    
+    DefaultListModel model;
     
     public chatServer() {
         initComponents();
+        model = new DefaultListModel();
     }
 
     /**
@@ -149,6 +150,9 @@ public class chatServer extends javax.swing.JFrame {
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
         // TODO add your handling code here:
         try{
+            model.addElement("Server connecting ...");
+            lsHistory.setModel(model);
+            ss = new ServerSocket(Integer.parseInt(txtPort.getText()));
         String port = "";
         port = txtPort.getText().trim();
 //        msgArea.setText(msgArea.getText().trim()+"\n"+"Server : "+ msgOut );
