@@ -46,8 +46,8 @@ public class chatServer extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        textPort = new javax.swing.JTextField();
-        optionButton = new javax.swing.JButton();
+        txtPort = new javax.swing.JTextField();
+        btnStart = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,10 +68,10 @@ public class chatServer extends javax.swing.JFrame {
 
         jLabel3.setText("Port : ");
 
-        optionButton.setText("Xác nhận");
-        optionButton.addActionListener(new java.awt.event.ActionListener() {
+        btnStart.setText("Mở kết nối");
+        btnStart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                optionButtonActionPerformed(evt);
+                btnStartActionPerformed(evt);
             }
         });
 
@@ -92,9 +92,9 @@ public class chatServer extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel3)
                                         .addGap(18, 18, 18)
-                                        .addComponent(textPort, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(txtPort, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jLabel2)))
-                            .addComponent(optionButton))
+                            .addComponent(btnStart))
                         .addGap(0, 210, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
@@ -117,9 +117,9 @@ public class chatServer extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel3))
-                    .addComponent(textPort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(optionButton)
+                .addComponent(btnStart)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -146,17 +146,17 @@ public class chatServer extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_msgSendActionPerformed
 
-    private void optionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optionButtonActionPerformed
+    private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
         // TODO add your handling code here:
         try{
         String port = "";
-        port = textPort.getText().trim();
+        port = txtPort.getText().trim();
 //        msgArea.setText(msgArea.getText().trim()+"\n"+"Server : "+ msgOut );
 //        dout.writeUTF(msgOut);
         }catch (Exception e){
                         
         }
-    }//GEN-LAST:event_optionButtonActionPerformed
+    }//GEN-LAST:event_btnStartActionPerformed
 
     /**
      * @param args the command line arguments
@@ -210,6 +210,7 @@ public class chatServer extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnStart;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -217,7 +218,6 @@ public class chatServer extends javax.swing.JFrame {
     private static javax.swing.JTextArea msgArea;
     private javax.swing.JButton msgSend;
     private javax.swing.JTextField msgText;
-    private javax.swing.JButton optionButton;
-    private javax.swing.JTextField textPort;
+    private javax.swing.JTextField txtPort;
     // End of variables declaration//GEN-END:variables
 }

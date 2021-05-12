@@ -42,9 +42,9 @@ public class chatClient extends javax.swing.JFrame {
         msgSend = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        textPort = new javax.swing.JTextField();
+        txtPort = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        optionButton = new javax.swing.JButton();
+        btnButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -69,15 +69,20 @@ public class chatClient extends javax.swing.JFrame {
 
         jLabel2.setText("CÀI ĐẶT");
 
-        textPort.addActionListener(new java.awt.event.ActionListener() {
+        txtPort.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textPortActionPerformed(evt);
+                txtPortActionPerformed(evt);
             }
         });
 
         jLabel3.setText("Port : ");
 
-        optionButton.setText("Xác nhận");
+        btnButton.setText("Xác nhận");
+        btnButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -105,11 +110,11 @@ public class chatClient extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addGap(18, 18, 18)
-                                .addComponent(textPort, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(txtPort, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(optionButton)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(btnButton)))
+                .addContainerGap(383, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,10 +125,10 @@ public class chatClient extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textPort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addComponent(optionButton)
+                .addComponent(btnButton)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -138,7 +143,8 @@ public class chatClient extends javax.swing.JFrame {
 
     private void msgSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_msgSendActionPerformed
         // TODO add your handling code here:
-        try{String msgOut = "";
+        try{
+        String msgOut = "";
         msgOut = msgText.getText().trim();
         msgArea.setText(msgArea.getText().trim()+"\n"+"Client : "+ msgOut );
         dout.writeUTF(msgOut);
@@ -151,9 +157,13 @@ public class chatClient extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_msgTextActionPerformed
 
-    private void textPortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textPortActionPerformed
+    private void txtPortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPortActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textPortActionPerformed
+    }//GEN-LAST:event_txtPortActionPerformed
+
+    private void btnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -204,6 +214,7 @@ public class chatClient extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -211,7 +222,6 @@ public class chatClient extends javax.swing.JFrame {
     private static javax.swing.JTextArea msgArea;
     private javax.swing.JButton msgSend;
     private javax.swing.JTextField msgText;
-    private javax.swing.JButton optionButton;
-    private javax.swing.JTextField textPort;
+    private javax.swing.JTextField txtPort;
     // End of variables declaration//GEN-END:variables
 }

@@ -49,16 +49,16 @@
                           <Group type="102" attributes="0">
                               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="textPort" min="-2" pref="66" max="-2" attributes="0"/>
+                              <Component id="txtPort" min="-2" pref="109" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="optionButton" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnButton" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="383" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -71,11 +71,11 @@
               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="textPort" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtPort" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="28" max="32767" attributes="0"/>
-              <Component id="optionButton" min="-2" max="-2" attributes="0"/>
+              <Component id="btnButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="193" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -130,9 +130,9 @@
         <Property name="text" type="java.lang.String" value="C&#xc0;I &#x110;&#x1eb6;T"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="textPort">
+    <Component class="javax.swing.JTextField" name="txtPort">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textPortActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPortActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
@@ -140,10 +140,13 @@
         <Property name="text" type="java.lang.String" value="Port : "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="optionButton">
+    <Component class="javax.swing.JButton" name="btnButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="X&#xe1;c nh&#x1ead;n"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnButtonActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
