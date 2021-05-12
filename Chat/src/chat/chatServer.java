@@ -14,7 +14,7 @@ import javax.swing.DefaultListModel;
  *
  * @author h-sierra
  */
-public class chatServer extends javax.swing.JFrame {
+public class chatServer extends javax.swing.JFrame implements Runnalbe{
 
     /**
      * Creates new form chatServer
@@ -139,12 +139,11 @@ public class chatServer extends javax.swing.JFrame {
     private void msgSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_msgSendActionPerformed
         // TODO add your handling code here:
         try{
-        String msgOut = "";
-        msgOut = msgText.getText().trim();
-        msgArea.setText(msgArea.getText().trim()+"\n"+"Server : "+ msgOut );
-        dout.writeUTF(msgOut);
-        }catch (Exception e){
-                        
+            dout = new DataOutputStream(s.getOutputStream());
+            dout.writeUTF(txtMessage.getText());
+            dout.flush();
+        } catch (Exception e){
+
         }
     }//GEN-LAST:event_msgSendActionPerformed
 
@@ -156,6 +155,8 @@ public class chatServer extends javax.swing.JFrame {
             ss = new ServerSocket(Integer.parseInt(txtPort.getText()));
             s = ss.accept();
             model.addElement("Server is connected");
+            Thread t = new Thread(chatServer.this );
+            t.start();
 //            msgArea.setModel(model);
 //        String port = "";
 //        port = txtPort.getText().trim();
@@ -228,4 +229,21 @@ public class chatServer extends javax.swing.JFrame {
     private javax.swing.JTextField msgText;
     private javax.swing.JTextField txtPort;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void run() {
+        try {
+            din = new DataInputStream(s.getInputStream());
+            while (true) {
+                if (socket != null) {
+                    model.addElement("Server say :" + din.readUTF());
+//                    lsHistory.setModel(model);
+                }
+                Thread.sleep(1000);
+            }
+
+        } catch (Exception e) {
+
+        }
+    }
 }

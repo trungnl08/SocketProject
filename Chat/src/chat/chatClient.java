@@ -14,7 +14,7 @@ import javax.swing.DefaultListModel;
  *
  * @author h-sierra
  */
-public class chatClient extends javax.swing.JFrame {
+public class chatClient extends javax.swing.JFrame implements  Runnable{
 
     /**
      * Creates new form chatClient
@@ -146,10 +146,9 @@ public class chatClient extends javax.swing.JFrame {
     private void msgSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_msgSendActionPerformed
         // TODO add your handling code here:
         try{
-        String msgOut = "";
-        msgOut = msgText.getText().trim();
-        msgArea.setText(msgArea.getText().trim()+"\n"+"Client : "+ msgOut );
-        dout.writeUTF(msgOut);
+        dout = new DataOutputStream(s.getOutputStream());
+        dout.writeUTF(txtMessage.getText());
+        dout.flush();
         } catch (Exception e){
             
         }
@@ -171,6 +170,8 @@ public class chatClient extends javax.swing.JFrame {
             s = new Socket("localhost",Integer.parseInt(txtPort.getText()));
             model.addElement("Client is connected");
 //            lsHistory.setModel(model);
+            Thread t = new Thread(chatClient.this);
+            t.start();
         }
         catch (Exception e) {
 
@@ -236,4 +237,20 @@ public class chatClient extends javax.swing.JFrame {
     private javax.swing.JTextField msgText;
     private javax.swing.JTextField txtPort;
     // End of variables declaration//GEN-END:variables
+    @Override
+    public void run() {
+        try {
+            din = new DataInputStream(s.getInputStream());
+            while (true) {
+                if (socket != null) {
+                    model.addElement("Client say :" + din.readUTF());
+//                    lsHistory.setModel(model);
+                }
+                Thread.sleep(1000);
+            }
+
+        } catch (Exception e) {
+
+        }
+    }
 }
