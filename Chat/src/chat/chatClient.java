@@ -19,12 +19,14 @@ public class chatClient extends javax.swing.JFrame {
     /**
      * Creates new form chatClient
      */
-    static ServerSocket ss;
+//    static ServerSocket ss;
     static Socket s;
     static DataInputStream din;
     static DataOutputStream dout;
+    DefaultListModel model;
     public chatClient() {
         initComponents();
+        model = new DefaultListModel();
     }
 
     /**
@@ -163,6 +165,16 @@ public class chatClient extends javax.swing.JFrame {
 
     private void btnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnButtonActionPerformed
         // TODO add your handling code here:
+        try {
+            model.addElement("Client connecting ...");
+            lsHistory.setModel(model);
+            s = new Socket("localhost",Integer.parseInt(txtPort.getText()));
+            model.addElement("Client is connected");
+            lsHistory.setModel(model);
+        }
+        catch (Exception e) {
+
+        }
     }//GEN-LAST:event_btnButtonActionPerformed
 
     /**

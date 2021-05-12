@@ -153,8 +153,11 @@ public class chatServer extends javax.swing.JFrame {
             model.addElement("Server connecting ...");
             lsHistory.setModel(model);
             ss = new ServerSocket(Integer.parseInt(txtPort.getText()));
-        String port = "";
-        port = txtPort.getText().trim();
+            s = ss.accept();
+            model.addElement("Server is connected");
+            lsHistory.setModel(model);
+//        String port = "";
+//        port = txtPort.getText().trim();
 //        msgArea.setText(msgArea.getText().trim()+"\n"+"Server : "+ msgOut );
 //        dout.writeUTF(msgOut);
         }catch (Exception e){
