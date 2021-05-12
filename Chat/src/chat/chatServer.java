@@ -8,6 +8,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import javax.swing.DefaultListModel;
 
 /**
  *
@@ -151,11 +152,11 @@ public class chatServer extends javax.swing.JFrame {
         // TODO add your handling code here:
         try{
             model.addElement("Server connecting ...");
-            lsHistory.setModel(model);
+//            msgArea.setModel(model);
             ss = new ServerSocket(Integer.parseInt(txtPort.getText()));
             s = ss.accept();
             model.addElement("Server is connected");
-            lsHistory.setModel(model);
+//            msgArea.setModel(model);
 //        String port = "";
 //        port = txtPort.getText().trim();
 //        msgArea.setText(msgArea.getText().trim()+"\n"+"Server : "+ msgOut );

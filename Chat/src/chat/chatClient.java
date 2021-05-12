@@ -9,7 +9,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-
+import javax.swing.DefaultListModel;
 /**
  *
  * @author h-sierra
@@ -167,10 +167,10 @@ public class chatClient extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             model.addElement("Client connecting ...");
-            lsHistory.setModel(model);
+//            lsHistory.setModel(model);
             s = new Socket("localhost",Integer.parseInt(txtPort.getText()));
             model.addElement("Client is connected");
-            lsHistory.setModel(model);
+//            lsHistory.setModel(model);
         }
         catch (Exception e) {
 
