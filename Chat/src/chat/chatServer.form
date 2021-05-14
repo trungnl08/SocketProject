@@ -42,7 +42,11 @@
                                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Component id="btnStart" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="btnStart" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="btnEnd" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace min="0" pref="210" max="32767" attributes="0"/>
                   </Group>
@@ -77,7 +81,10 @@
                   <Component id="txtPort" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="btnStart" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnStart" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnEnd" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace pref="21" max="32767" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="193" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -145,6 +152,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnStartActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnEnd">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#x110;&#xf3;ng k&#x1ebf;t n&#x1ed1;i"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEndActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

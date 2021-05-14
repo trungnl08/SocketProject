@@ -50,6 +50,7 @@ public class chatServer extends javax.swing.JFrame implements Runnalbe{
         jLabel3 = new javax.swing.JLabel();
         txtPort = new javax.swing.JTextField();
         btnStart = new javax.swing.JButton();
+        btnEnd = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -77,6 +78,13 @@ public class chatServer extends javax.swing.JFrame implements Runnalbe{
             }
         });
 
+        btnEnd.setText("Đóng kết nối");
+        btnEnd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEndActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -96,7 +104,10 @@ public class chatServer extends javax.swing.JFrame implements Runnalbe{
                                         .addGap(18, 18, 18)
                                         .addComponent(txtPort, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jLabel2)))
-                            .addComponent(btnStart))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnStart)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnEnd)))
                         .addGap(0, 210, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
@@ -121,7 +132,9 @@ public class chatServer extends javax.swing.JFrame implements Runnalbe{
                         .addComponent(jLabel3))
                     .addComponent(txtPort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(btnStart)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnStart)
+                    .addComponent(btnEnd))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -166,6 +179,10 @@ public class chatServer extends javax.swing.JFrame implements Runnalbe{
                         
         }
     }//GEN-LAST:event_btnStartActionPerformed
+
+    private void btnEndActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEndActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEndActionPerformed
 
     /**
      * @param args the command line arguments
@@ -219,6 +236,7 @@ public class chatServer extends javax.swing.JFrame implements Runnalbe{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEnd;
     private javax.swing.JButton btnStart;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
