@@ -5,9 +5,11 @@
  */
 package chat;
 
+import static chat.chatServer.s;
 import java.awt.*;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.net.ServerSocket;
 import java.net.Socket;
 import javax.swing.DefaultListModel;
 /**
@@ -19,6 +21,8 @@ public class chatClient extends javax.swing.JFrame implements  Runnable{
     /**
      * Creates new form chatClient
      */
+        static ServerSocket ss;
+
     static Socket s;
     static DataInputStream din;
     static DataOutputStream dout;
@@ -46,6 +50,7 @@ public class chatClient extends javax.swing.JFrame implements  Runnable{
         txtPort = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         btnButton = new javax.swing.JButton();
+        btnEnd = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -85,6 +90,13 @@ public class chatClient extends javax.swing.JFrame implements  Runnable{
             }
         });
 
+        btnEnd.setText("Đóng kết nối");
+        btnEnd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEndActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -114,8 +126,10 @@ public class chatClient extends javax.swing.JFrame implements  Runnable{
                                 .addComponent(txtPort, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(btnButton, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(btnButton, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnEnd, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(312, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,7 +143,9 @@ public class chatClient extends javax.swing.JFrame implements  Runnable{
                     .addComponent(txtPort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
-                .addComponent(btnButton)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnButton)
+                    .addComponent(btnEnd))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -178,6 +194,14 @@ public class chatClient extends javax.swing.JFrame implements  Runnable{
 
         }
     }//GEN-LAST:event_btnButtonActionPerformed
+
+    private void btnEndActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEndActionPerformed
+        // TODO add your handling code here:
+        try {
+            s.close();
+            msgArea.setText(msgArea.getText().trim()+"\n"+ "Client is close. ");
+        }catch (Exception e){}
+    }//GEN-LAST:event_btnEndActionPerformed
 
     /**
      * @param args the command line arguments
@@ -229,6 +253,7 @@ public class chatClient extends javax.swing.JFrame implements  Runnable{
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnButton;
+    private javax.swing.JButton btnEnd;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
