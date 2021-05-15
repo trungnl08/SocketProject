@@ -12,3 +12,4 @@ CÁCH THỨC HOẠT ĐỘNG:
 -Khi server/client muốn đóng kết nối thì click button ngắt kết nối.
 
 LOG COMMIT:
+![Screen Shot 2021-05-15 at 12 42 56 PM](https://user-images.githubusercontent.com/70845041/118349489-29b0f580-b57b-11eb-8212-de107a235941.png)
