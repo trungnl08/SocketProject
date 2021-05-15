@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package chat;
+import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.io.DataInputStream;
@@ -14,7 +16,7 @@ import javax.swing.DefaultListModel;
  *
  * @author h-sierra
  */
-public class chatServer extends javax.swing.JFrame implements Runnalbe{
+public class chatServer extends javax.swing.JFrame implements Runnable{
 
     /**
      * Creates new form chatServer
@@ -148,33 +150,33 @@ public class chatServer extends javax.swing.JFrame implements Runnalbe{
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
     private void msgSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_msgSendActionPerformed
         // TODO add your handling code here:
         try{
-            dout = new DataOutputStream(s.getOutputStream());
-            dout.writeUTF(txtMessage.getText());
-            dout.flush();
-        } catch (Exception e){
 
+                dout = new DataOutputStream(s.getOutputStream());
+                dout.writeUTF(msgText.getText());
+                msgArea.setText(msgArea.getText().trim() + "\n" + "Server : " + msgText.getText());
+                dout.flush();
+                msgText.setText(null);
+            msgText.setText(null);
+        } catch (Exception e){
+            msgText.setText("");
         }
     }//GEN-LAST:event_msgSendActionPerformed
 
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
         // TODO add your handling code here:
         try{
-            model.addElement("Server connecting ...");
-//            msgArea.setModel(model);
+
+            msgArea.setText(msgArea.getText().trim()+"\n"+ "Server is connecting...");
             ss = new ServerSocket(Integer.parseInt(txtPort.getText()));
             s = ss.accept();
-            model.addElement("Server is connected");
+            msgArea.setText(msgArea.getText().trim()+"\n"+ "Server is connected");
             Thread t = new Thread(chatServer.this );
             t.start();
-//            msgArea.setModel(model);
-//        String port = "";
-//        port = txtPort.getText().trim();
-//        msgArea.setText(msgArea.getText().trim()+"\n"+"Server : "+ msgOut );
-//        dout.writeUTF(msgOut);
+
+
         }catch (Exception e){
                         
         }
@@ -182,6 +184,12 @@ public class chatServer extends javax.swing.JFrame implements Runnalbe{
 
     private void btnEndActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEndActionPerformed
         // TODO add your handling code here:
+        try {
+            s.close();
+            ss.close();
+            msgArea.setText(msgArea.getText().trim()+"\n"+ "Server is close. ");
+        }catch (Exception e){}
+
     }//GEN-LAST:event_btnEndActionPerformed
 
     /**
@@ -210,7 +218,7 @@ public class chatServer extends javax.swing.JFrame implements Runnalbe{
             java.util.logging.Logger.getLogger(chatServer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        System.out.println("a");
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -253,15 +261,13 @@ public class chatServer extends javax.swing.JFrame implements Runnalbe{
         try {
             din = new DataInputStream(s.getInputStream());
             while (true) {
-                if (socket != null) {
-                    model.addElement("Server say :" + din.readUTF());
-//                    lsHistory.setModel(model);
+                if (s != null) {
+                    msgArea.setText(msgArea.getText().trim()+"\n"+ "Client : "+din.readUTF());
                 }
-                Thread.sleep(1000);
+                System.out.println("2");
+                //Thread.sleep(100);
             }
-
         } catch (Exception e) {
-
         }
     }
 }

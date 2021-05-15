@@ -5,9 +5,9 @@
  */
 package chat;
 
+import java.awt.*;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.net.ServerSocket;
 import java.net.Socket;
 import javax.swing.DefaultListModel;
 /**
@@ -19,7 +19,6 @@ public class chatClient extends javax.swing.JFrame implements  Runnable{
     /**
      * Creates new form chatClient
      */
-//    static ServerSocket ss;
     static Socket s;
     static DataInputStream din;
     static DataOutputStream dout;
@@ -146,11 +145,15 @@ public class chatClient extends javax.swing.JFrame implements  Runnable{
     private void msgSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_msgSendActionPerformed
         // TODO add your handling code here:
         try{
-        dout = new DataOutputStream(s.getOutputStream());
-        dout.writeUTF(txtMessage.getText());
-        dout.flush();
+                dout = new DataOutputStream(s.getOutputStream());
+                dout.writeUTF(msgText.getText());
+                msgArea.setText(msgArea.getText().trim() + "\n" + "Client : " + msgText.getText());
+                dout.flush();
+                msgText.setText(null);
+
+            msgText.setText(null);
         } catch (Exception e){
-            
+            msgText.setText("");
         }
     }//GEN-LAST:event_msgSendActionPerformed
 
@@ -165,11 +168,9 @@ public class chatClient extends javax.swing.JFrame implements  Runnable{
     private void btnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnButtonActionPerformed
         // TODO add your handling code here:
         try {
-            model.addElement("Client connecting ...");
-//            lsHistory.setModel(model);
+            msgArea.setText(msgArea.getText().trim()+"\n"+ "Client is connecting...");
             s = new Socket("localhost",Integer.parseInt(txtPort.getText()));
-            model.addElement("Client is connected");
-//            lsHistory.setModel(model);
+            msgArea.setText(msgArea.getText().trim()+"\n"+ "Client is connected");
             Thread t = new Thread(chatClient.this);
             t.start();
         }
@@ -242,11 +243,12 @@ public class chatClient extends javax.swing.JFrame implements  Runnable{
         try {
             din = new DataInputStream(s.getInputStream());
             while (true) {
-                if (socket != null) {
-                    model.addElement("Client say :" + din.readUTF());
-//                    lsHistory.setModel(model);
-                }
+                if (s != null) {
+                        msgArea.setText(msgArea.getText().trim()+"\n"+ "Server : "+din.readUTF());
+                    }
+                System.out.println("1");
                 Thread.sleep(1000);
+
             }
 
         } catch (Exception e) {
